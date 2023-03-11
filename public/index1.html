@@ -1,0 +1,152 @@
+
+<!doctype html>   
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]--> 
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]--> 
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]--> 
+<!--[if (gt IE 7)|!(IE)]><!--> 
+<html lang="en-US" class="no-js">
+   <!--<![endif]-->  
+   <head>
+      <!-- ==============================================
+         Title and basic Meta Tags
+         =============================================== -->    
+      <meta charset="utf-8">
+      <title>MS Para</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <meta name="author" content="TheThemeLab">
+      <!-- ==============================================
+         Mobile Metas
+         =============================================== --> 	
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <!-- ==============================================
+         Google Fonts
+         =============================================== -->     
+      <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,500' rel='stylesheet' type='text/css'>
+      <!-- ==============================================
+         CSS
+         =============================================== -->                
+      <link rel="stylesheet" type="text/css" href="https://www.techonolab.com/tf/twist/gradient/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://www.techonolab.com/tf/twist/gradient/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="https://www.techonolab.com/tf/twist/gradient/css/style.css">
+
+
+      <style>
+         
+
+         #countdown {
+
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         
+         }
+
+         .number {
+         font-size: 4.5vw;
+         position: relative;
+         padding-bottom: 2vw;
+       
+         }
+         .number:not(:last-child) {
+            margin-right: 4vw;
+            
+         }
+         .number:not(:last-child)::after {
+               content: ":";
+               position: absolute;
+               right: -2.5vw;
+               top: -0.5vw;
+            }
+         .text {
+         font-size: 1.3vw;
+         position: absolute;
+         bottom: 0;
+         left: 50%;
+         transform: translateX(-50%);
+         color: rgba(#000, 0.65);
+         }
+
+      </style>
+   </head>
+   <body class="preload">
+      <div style="background-image: url('frontend/gif.gif');height: 100vh;text-align: center;position: relative;" >
+         <div style="position: absolute;color: white;left: 35%;bottom: 12%;">
+            <div id="countdown">
+               <div class="number">
+                 <span class="days time"></span>
+                 <span class="text">Jours</span>
+               </div>
+               <div class="number">
+                 <span class="hours time"></span>
+                 <span class="text">Heures</span>
+               </div>
+               <div class="number">
+                 <span class="minutes time"></span>
+                 <span class="text">Minutes</span>
+               </div>
+               <div class="number">
+                 <span class="seconds time"></span>
+                 <span class="text">Secondes</span>
+               </div>
+             </div>
+         </div>
+      </div>
+ 
+      <!-- ==============================================
+         JS
+         =============================================== -->         
+      <script type="text/javascript" src="https://www.techonolab.com/tf/twist/gradient/js/modernizr.custom.js"></script>     
+      <script type="text/javascript" src="https://www.techonolab.com/tf/twist/gradient/js/jquery.min.js"></script>           
+      <script type="text/javascript" src ="js/bootstrap.min.js"></script>     
+      <script type="text/javascript" src="https://www.techonolab.com/tf/twist/gradient/js/plugins.js"></script>     
+      <script type="text/javascript" src="https://www.techonolab.com/tf/twist/gradient/js/init.js"></script> 
+      
+      <script>
+         function getTimeRemaining(endtime) {
+  let t = Date.parse(endtime) - Date.parse(new Date());
+  let seconds = Math.floor((t / 1000) % 60);
+  let minutes = Math.floor((t / 1000 / 60) % 60);
+  let hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  let days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    total: t,
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  let clock = document.getElementById(id);
+  let daysSpan = clock.querySelector(".days");
+  let hoursSpan = clock.querySelector(".hours");
+  let minutesSpan = clock.querySelector(".minutes");
+  let secondsSpan = clock.querySelector(".seconds");
+
+  function updateClock() {
+    let t = getTimeRemaining(endtime);
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ("0" + t.hours).slice(-2);
+    minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ("0" + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+const deadline = "February 14 2023";
+initializeClock("countdown", deadline);
+
+
+      </script>
+   </body>
+</html>
